@@ -10,7 +10,7 @@
   .bg-box {
             width: 100%;
             height: 100vh;
-            background-image: url("/image/WhatsApp\ Image\ 2025-11-27\ at\ 16.02.43_c72c8f3f.jpg");
+            background-image: url("bg");
              background-size: cover;
             background-position: center;
             background-repeat: no-repeat;

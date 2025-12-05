@@ -27,7 +27,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 setcookie("remember_email", $user["email"], time() + (86400 * 7));
             }
 
-            header("Location: insert.php");
+            header("Location: home.php");
             exit();
 
         } else {
