@@ -1,6 +1,6 @@
 <?php
 session_start();
-$conn = mysqli_connect("localhost","root","","store_info");
+$conn = mysqli_connect("localhost","root","","furniture_store");
 
 // لما الصفحة تفتح عادي بدون POST.. مفيش لوجين
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -18,7 +18,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $user = mysqli_fetch_assoc($result);
 
         // check password hash
-        if (password_verify($password, $user["password"])) {
+        if (password_verify($password, $user["Password"])) {
 
             $_SESSION["name"] = $user["name"];
             $_SESSION["email"] = $user["email"];
@@ -53,7 +53,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap.css">
     
     <title>Login</title>
 
@@ -140,7 +140,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
    <div class="text-center mb-4">
     <div class="login-icon-container">
-        <img src="image/login_icon.jpg" alt="Login Icon">
+        <img src="images/login_icon.jpg" alt="Login Icon">
     </div>
     <h2 class="login-title">Login</h2>
 </div>

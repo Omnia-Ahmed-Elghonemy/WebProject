@@ -18,10 +18,6 @@ if($result->num_rows > 0){
     exit;
 }
 ?>
-
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -29,11 +25,170 @@ if($result->num_rows > 0){
 <title><?php echo $product['name']; ?></title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <link rel="stylesheet" href="./css/bootstrap.css">
-<link rel="stylesheet" href="./css/productdetails.css"> 
 <script src="./js/bootstrap.js"></script>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<style>
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+      padding-top: 80px;
+}
 
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 9999;
+  background: transparent;
+background-color: #fff;
+color: black;
+height: 100px;
+}
+.navbar-light .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='black' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/ %3E%3C/svg%3E");
+}
+.navbar .nav-link {
+  color: rgb(0, 0, 0) !important;
+  font-size: 14px;
+  letter-spacing: 2px;
+  font-weight:600;
+}
+
+.nav-icons i {
+  font-size: 18px;
+  cursor: pointer;
+  color: #000;
+}
+.prod {
+    display: flex;
+
+    margin: auto;
+   
+    
+    padding: 20px;
+     justify-content: center;
+    align-items: center;
+}
+.product_details{
+background-color: #fafafa;
+width: 100%;
+height: 90vh;
+   display: flex;
+    align-items: center;
+}
+.left {
+    display: flex;
+    padding-right: 20px;
+    justify-content: center;
+    align-items: center;
+}
+.stars{
+    margin-top: 20px;
+}
+
+.main-img {
+    width: 90%;
+    margin-bottom: 10px;
+}
+.thumbnails img {
+    width: 60px;
+    margin: 5px;
+    cursor: pointer;
+    border: 1px solid #ccc;
+    display: block;
+}
+h1 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+.price {
+    font-size: 20px;
+    color: #333;
+    margin-bottom: 10px;
+    margin-top: 20px;
+}
+.stars{
+    font-size: 15px;
+}
+.review-count {
+    color: #777;
+    font-size: 12px;
+    margin-left: 5px;
+}
+p {
+    line-height: 1.5;
+    color: #555;
+}
+.quantity-cart {
+    display: flex;
+    margin: 15px 0;
+}
+.quantity-cart input {
+    width: 100px;
+    padding: 5px;
+    border: 1px solid #ccc;
+    text-align: center;
+    
+}
+.quantity-cart button {
+    background: #000;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+   font-weight: bold;
+}
+.wishlist {
+    margin: 10px 0;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+.wishlist span {
+    margin-left: 5px;
+}
+.details {
+    font-size: 14px;
+    color: #555;
+}
+.details a {
+    color: #777;
+    text-decoration: none;
+}
+.details a:hover {
+    text-decoration: underline;
+}
+.footer{
+    margin-top: 100px;
+ background-color: #1e1d1d;
+ color: white;
+ width: 100%;
+}
+.footer-link {
+  color:white;
+  text-decoration: none;
+  display: block;
+  margin-bottom: 8px;
+  transition: 0.3s;
+}
+
+.footer-link:hover {
+  color: #e74c3c;
+  padding-left: 5px;
+}
+
+.footer-icon {
+  color: #bdc3c7;
+  font-size: 1.2rem;
+  transition: 0.3s;
+}
+
+.footer-icon:hover {
+  color: #e74c3c;
+  transform: translateY(-3px);
+}</style>
 </head>
 <body>
      <!-- Navbar -->
@@ -61,9 +216,9 @@ if($result->num_rows > 0){
           id="navbarNav"
         >
           <ul class="navbar-nav gap-4">
-            <li class="nav-item"><a class="nav-link" href="#">HOME</a></li>
+            <li class="nav-item"><a class="nav-link" href="home.php">HOME</a></li>
             <li class="nav-item"><a class="nav-link" href="#">PAGES</a></li>
-            <li class="nav-item"><a class="nav-link" href="#">SHOP</a></li>
+            <li class="nav-item"><a class="nav-link" href="index.php">SHOP</a></li>
             <li class="nav-item"><a class="nav-link" href="#">PORTFOLIO</a></li>
             <li class="nav-item"><a class="nav-link" href="#">BLOG</a></li>
             <li class="nav-item"><a class="nav-link" href="#">ELEMENTS</a></li>
@@ -72,7 +227,7 @@ if($result->num_rows > 0){
 
         <!-- Right Icons -->
         <div class="d-flex align-items-center gap-4 nav-icons">
-          <span >CART ($0)</span>
+          <span ><a href="cart.php" style="text-decoration: none; color: black;">CART ($0)</a></span>
           <i class="fa-regular fa-heart "></i>
           <i class="fa-solid fa-bars "></i>
         </div>
@@ -96,10 +251,11 @@ if($result->num_rows > 0){
             <span class="review-count">(1 CUSTOMER REVIEW)</span>
         </div>
         <p><?php echo $product['description'];?></p>
-        <div class="quantity-cart">
-            <input type="number" value="1" min="1">
-            <button>Add to Cart</button>
-        </div>
+         <div class="quantity-cart">
+                <input type="number" id="productQty" value="1" min="1" class="form-control w-25 d-inline-block">
+                <button id="addToCartBtn" class="btn btn-dark">Add to Cart</button>
+            </div>
+            
         <div class="wishlist">
           <i class="fa-solid fa-heart" style="color: #000000;"></i>
             <span>ADD TO WISHLIST</span>
@@ -177,9 +333,28 @@ if($result->num_rows > 0){
 function changeImg(el) {
     document.getElementById('mainImg').src = el.src;
 }
+document.getElementById('addToCartBtn').addEventListener('click', function() {
+    const qty = document.getElementById('productQty').value;
+    const productId = <?= $product['id'] ?>;
+
+    fetch(`add_to_cart.php?id=${productId}&qty=${qty}&ajax=1`)
+    .then(response => response.json())
+    .then(data => {
+        if(data.status === 'success'){
+            alert("Product added to cart!");
+            // تحديث أيقونة الكارت في الهيدر إذا موجودة
+            const cartTotalEl = document.getElementById('cart-total');
+            if(cartTotalEl){
+                const current = parseInt(cartTotalEl.innerText.replace('$','')) || 0;
+                cartTotalEl.innerText = '$' + (current + (<?= $product['price'] ?> * qty));
+            }
+        } else {
+            alert("Error adding product to cart");
+        }
+    });
+});
 </script>
 
 
 </body>
 </html>
-
