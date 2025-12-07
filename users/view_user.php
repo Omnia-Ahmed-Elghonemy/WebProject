@@ -60,6 +60,7 @@ $result = mysqli_query($conn, "SELECT * FROM users");
             <th>Email</th>
             <th>Address</th>
             <th>Phone</th>
+
             <th>Actions</th>
         </tr>
         <!-- Loop through each user and display their details -->

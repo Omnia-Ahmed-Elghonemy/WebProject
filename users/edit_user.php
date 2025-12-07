@@ -31,7 +31,7 @@ if(isset($_POST['submit'])) {
         WHERE id=$id";
 
     if(mysqli_query($conn, $update_sql)) {
-        header("Location: /WebProject/admin/dashboard.php"); //redirect to user list after successful update
+        header("Location: /furniture/dashboard.php"); //redirect to user list after successful update
         exit;
     } else {
         echo "Error: " . mysqli_error($conn);

@@ -14,7 +14,7 @@ if(isset($_POST['submit'])){
             VALUES ('$image', '$name', '$desc', '$price')";
 
     if(mysqli_query($conn,$sql)){
-        header("Location: /WebProject/admin/dashboard.php");
+        header("Location: /furniture/dashboard.php");
         exit();
     }
 }

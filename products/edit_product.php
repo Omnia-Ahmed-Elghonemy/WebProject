@@ -33,7 +33,7 @@ if(isset($_POST['submit'])){
     }
 
     mysqli_query($conn, $sql);
-    header("Location: /WebProject/admin/dashboard.php");
+    header("Location: /furniture/dashboard.php");
     exit();
 }
 ?>

@@ -5,5 +5,5 @@ $id = $_GET['id'];
 
 mysqli_query($conn,"DELETE FROM products WHERE id=$id");
 
-header("Location: /WebProject/admin/dashboard.php");
+header("Location: /furniture/dashboard.php");
 exit();

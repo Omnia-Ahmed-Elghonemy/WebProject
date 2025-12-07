@@ -12,9 +12,9 @@ if(isset($_POST['submit'])) {
 
 
     // Insert user data into the database
-    $sql = "INSERT INTO users (name, email, address, phone, password) VALUES ('$name', '$email', '$address', '$phone', '$hashed_password')";
+    $sql = "INSERT INTO users (name, email, address, phone, Password) VALUES ('$name', '$email', '$address', '$phone', '$hashed_password')";
     if(mysqli_query($conn, $sql)) {
-        header("Location:/WebProject/admin/dashboard.php"); // redirect to dashboard after successful addition
+        header("Location: /furniture/dashboard.php"); // redirect to dashboard after successful addition
         exit;
     } else {
         echo "Error: " . mysqli_error($conn);
