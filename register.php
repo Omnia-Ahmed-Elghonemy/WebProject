@@ -107,7 +107,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
                   VALUES ('$name', '$email', '$password', '$phone','$address')";
 
         if(mysqli_query($conn, $query)) {
-            header("Location:login.php"); // بعد التسجيل يروح للوجن
+            header("Location:home.php"); // بعد التسجيل يروح للوجن
             exit();
         }
 
