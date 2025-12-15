@@ -99,17 +99,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
     if($conn) {
         $name     = mysqli_real_escape_string($conn, $_POST['name']);
         $email    = mysqli_real_escape_string($conn, $_POST['email']);
-        $password = mysqli_real_escape_string($conn, $_POST['password']);
+        $password = mysqli_real_escape_string($conn, $_POST['password']); // نص عادي
         $phone    = mysqli_real_escape_string($conn, $_POST['phone']);
         $address  = mysqli_real_escape_string($conn, $_POST['address']);
-        $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
-        $query = "INSERT INTO `users`(`name`, `email`, `password`, `phone`,`address`) 
-                  VALUES ('$name', '$email', '$hashed_password', '$phone','$address')";
+        $query = "INSERT INTO `users`(`name`, `email`, `Password`, `phone`,`address`) 
+                  VALUES ('$name', '$email', '$password', '$phone','$address')";
 
         if(mysqli_query($conn, $query)) {
-            // بعد التسجيل، نرسل المستخدم إلى صفحة insert.php
-            header("Location:home.php");
+            header("Location:login.php"); // بعد التسجيل يروح للوجن
             exit();
         }
 
@@ -122,4 +120,5 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
 
 </body>
 </html>
+       
        
