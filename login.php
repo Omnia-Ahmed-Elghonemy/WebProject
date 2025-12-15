@@ -15,7 +15,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if (mysqli_num_rows($result) > 0) {
         $user = mysqli_fetch_assoc($result);
-
+        var_dump($user);
         // التحقق من الباسورد عادي بدون هاش
         if ($password === $user["password"]) {
             $_SESSION["name"] = $user["name"];

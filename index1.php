@@ -1,8 +1,13 @@
 <?php
-include "db.php";
+$conn = mysqli_connect("localhost", "root", "", "furniture_store");
 
-$query = "SELECT * FROM products";
+if(!$conn){
+    die("Connection failed: " . mysqli_connect_error());
+}
+
+$query = "SELECT * FROM products LIMIT 6, 1000";
 $result = mysqli_query($conn, $query);
+
 ?>
 
 <!DOCTYPE html>
@@ -16,6 +21,7 @@ $result = mysqli_query($conn, $query);
     rel="stylesheet"
     integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
     crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <script
     src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
@@ -63,6 +69,7 @@ $result = mysqli_query($conn, $query);
 
     nav ul li {
       position: relative;
+      padding-left: 40px;
     }
 
     nav ul li a {
@@ -107,8 +114,8 @@ $result = mysqli_query($conn, $query);
       font-weight: bold;
       font-family: monospace;
       cursor: pointer;
-      margin-left: 20px;
-      margin-right: 40px;
+      margin-left: 150px;
+      
     }
 
     /* ===== Sidebar Menu ===== */
@@ -234,6 +241,8 @@ $result = mysqli_query($conn, $query);
     .filter {
       position: relative;
       display: inline-block;
+      float: right;
+      right: 10px;
     }
 
     .filter-btn {
@@ -276,12 +285,12 @@ $result = mysqli_query($conn, $query);
       cursor: pointer;
     }
 
-    .products {
+    /*.products {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       gap: 25px;
       margin: 40px;
-    }
+    }*/
 
     .product {
       text-align: center;
@@ -358,104 +367,68 @@ $result = mysqli_query($conn, $query);
 
     }
 
-    .footer {
-      background: #000000;
+    .footer{
+    margin-top: 100px;
+ background-color: #1e1d1d;
+ color: white;
+ width: 100%;
+}
+.footer-link {
+  color:white;
+  text-decoration: none;
+  display: block;
+  margin-bottom: 8px;
+  transition: 0.3s;
+}
 
-      padding: 50px 20px 20px;
-      padding-left: 50px;
-      font-family: Arial, sans-serif;
-    }
+.footer-link:hover {
+  color: #e74c3c;
+  padding-left: 5px;
+}
 
-    .footer-container {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 30px;
-      margin-bottom: 30px;
-    }
+.footer-icon {
+  color: #bdc3c7;
+  font-size: 1.2rem;
+  transition: 0.3s;
+}
 
-    .footer-column h3 {
-      font-size: 18px;
-      margin-bottom: 15px;
-      color: #ffffff;
-    }
-
-    .footer-column ul {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
-
-    .footer-column ul li {
-      margin-bottom: 10px;
-      font-size: 13px;
-      color: #ffffff;
-      position: relative;
-      cursor: pointer;
-      transition: all 0.3s ease;
-    }
-
-    .footer-column ul li::before {
-      content: "➔";
-      position: absolute;
-      left: -10px;
-      opacity: 0;
-      transition: all 0.3s ease;
-    }
-
-    .footer-column ul li:hover {
-
-      transform: translateX(10px);
-    }
-
-    .footer-column ul li:hover::before {
-      opacity: 1;
-      left: -25px;
-    }
-
-    .footer-bottom {
-
-      font-size: 14px;
-      color: #888;
-      padding-top: 15px;
-      border-top: 1px solid #585858;
-    }
+.footer-icon:hover {
+  color: #e74c3c;
+  transform: translateY(-3px);
+}
   </style>
 </head>
 
 <body>
 
   <header>
+  <nav class="navbar navbar-expand-lg ">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">
+        <p style="font-size: 30px; letter-spacing: 2px; font-weight: bold; margin:0;">DEPOT</p>
+      </a>
 
-    <div class="logo">
-      <p style="font-size: 30px; letter-spacing: 2px; font-weight: bold;">DEPOT</p>
+     
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
+              aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="home.php">HOME</a></li>
+          <li class="nav-item"><a class="nav-link" href="index.php">SHOP</a></li>
+          <li class="nav-item"><a class="nav-link" href="cart.php">CART</a></li>
+          <li class="nav-item"><a class="nav-link" href="register.php">REGISTER</a></li>
+          <li class="nav-item"><a class="nav-link" href="login.php">LOGIN</a></li>
+        </ul>
+      </div>
+
+    
+      <a href="cart.php" class="cart  " >Cart (<span id="cart-total">0$</span>)</a>
     </div>
-
-    <nav>
-      <ul>
-        <li><a href="#">Home</a>
-          <ul>
-            <li><a href="#">Home 1</a></li>
-            <li><a href="#">Home 2</a></li>
-          </ul>
-        </li>
-        <li><a href="#">Pages</a>
-          <ul>
-            <li><a href="#">About</a></li>
-            <li><a href="#">Contact</a></li>
-          </ul>
-        </li>
-        <li><a href="#" class="This-page">Shop</a></li>
-        <li><a href="#">Portfolio</a></li>
-        <li><a href="#">Blog</a></li>
-        <li><a href="#">Elements</a></li>
-      </ul>
-    </nav>
-
-    <a href="cart.php" class="cart">Cart (<span id="cart-total">0$</span>)</a>
-
-    <div class="menu-icon" onclick="toggleSidebar()">&#9776;</div>
-
-  </header>
+  </nav>
+</header>
 
   <div class="sidebar" id="sidebar">
     <h3>Welcome</h3>
@@ -467,20 +440,20 @@ $result = mysqli_query($conn, $query);
   <div class="content">
 
     <div class="breadcrumb">
-      <span>Home</span> /
+      <a href="home.php" style="text-decoration:none; color:#747474;">Home</a> /
       <span>Shop List</span> /
       <span class="no-hover">With Filter</span>
     </div>
-    <div class="filter-bar">
+    <!-- <div class="filter-bar">
       <div class="categories">
         <a href="#">All</a>
         <a href="#">Accessories</a>
         <a href="#">Decoration</a>
         <a href="#">Hardwoods</a>
         <a href="#">Fancies</a>
-      </div>
+      </div> -->
 
-      <div class="filter">
+      <div class="filter ">
         <span class="filter-btn">Filter ▼</span>
         <div class="filter-dropdown">
           <div>
@@ -509,15 +482,15 @@ $result = mysqli_query($conn, $query);
 
     </div>
 
-    <div class="products">
+    <div class="products row g-4 mt-5 me-2 ms-2 ">
 
       <?php while ($row = mysqli_fetch_assoc($result)): ?>
-
-        <div class="product" data-price="<?= $row['price'] ?>">
-
+         <div class="product col-12 col-md-6 col-lg-3" data-price="<?= $row['price'] ?>">
+        <a href="productdetails2.php?id=<?= $row['id'] ?>" class="text-decoration-none text-dark">
+ 
+        
           <div class="image-container">
             <img src="images/<?= $row['image'] ?>" alt="<?= $row['name'] ?>">
-
             <div class="overlay">
               <span>Quick Look</span>
               <span class="heart">♡</span>
@@ -533,63 +506,74 @@ $result = mysqli_query($conn, $query);
             <span data-value="4">&#9734;</span>
             <span data-value="5">&#9734;</span>
           </div>
-          <!-------------------------------------------->
+
           <div class="price" onclick="addToCart(<?= $row['price'] ?>)">
-            <a href="add_to_cart.php?id=<?= $row['id'] ?>" class="price-link" style="cursor: pointer; color: black; text-decoration: none; opacity: .6;">
-              <?= $row['price'] ?>$
-            </a>
+            <?= $row['price'] ?>$
           </div>
-
+      </a>
         </div>
-
       <?php endwhile; ?>
-
     </div>
 
-    <footer class="footer">
-      <div class="footer-container">
-        <div class="footer-column">
-          <h3>Customer Service</h3>
-          <ul>
-            <li>Help & Contact Us</li>
-            <li>Returns & Refunds</li>
-            <li>Online Stores</li>
-            <li>Terms & Conditions</li>
-          </ul>
-        </div>
-        <div class="footer-column">
-          <h3>Company</h3>
-          <ul>
-            <li>What We Do</li>
-            <li>Available Services</li>
-            <li>Latest Posts</li>
-            <li>FAQs</li>
-          </ul>
-        </div>
-        <div class="footer-column">
-          <h3>Social Media</h3>
-          <ul>
-            <li>Twitter</li>
-            <li>Instagram</li>
-            <li>Tumblr</li>
-            <li>Pinterest</li>
-          </ul>
-        </div>
-        <div class="footer-column">
-          <h3>Profile</h3>
-          <ul>
-            <li>My Account</li>
-            <li>Checkout</li>
-            <li>Order Tracking</li>
-            <li>Help & Support</li>
-          </ul>
+
+   <footer class="footer pt-5 pb-3 " style="width:100%;">
+      <div class="container">
+        <div class="row text-center text-md-start">
+          <div class="col-12 col-sm-6 col-md-3 mb-4 footer-col">
+            <h5 class="footer-title">CUSTOMER SERVICE</h5>
+            <ul class="list-unstyled">
+              <li><a href="#" class="footer-link">Help & Contact Us</a></li>
+              <li><a href="#" class="footer-link">Returns & Refunds</a></li>
+              <li><a href="#" class="footer-link">Online Stores</a></li>
+              <li><a href="#" class="footer-link">Terms & Conditions</a></li>
+            </ul>
+          </div>
+
+          <div class="col-12 col-sm-6 col-md-3 mb-4 footer-col">
+            <h5 class="footer-title">COMPANY</h5>
+            <ul class="list-unstyled">
+              <li><a href="#" class="footer-link">What We Do</a></li>
+              <li><a href="#" class="footer-link">Available Services</a></li>
+              <li><a href="#" class="footer-link">Latest Posts</a></li>
+              <li><a href="#" class="footer-link">FAQs</a></li>
+            </ul>
+          </div>
+
+          <div class="col-12 col-sm-6 col-md-3 mb-4 footer-col">
+            <h5 class="footer-title">SOCIAL MEDIA</h5>
+            <ul class="list-unstyled">
+              <li><a href="#" class="footer-link">Twitter</a></li>
+              <li><a href="#" class="footer-link">Instagram</a></li>
+              <li><a href="#" class="footer-link">Tumblr</a></li>
+              <li><a href="#" class="footer-link">Pinterest</a></li>
+            </ul>
+          </div>
+
+          <div class="col-12 col-sm-6 col-md-3 mb-4 footer-col">
+            <h5 class="footer-title">PROFILE</h5>
+            <ul class="list-unstyled">
+              <li><a href="#" class="footer-link">My Account</a></li>
+              <li><a href="#" class="footer-link">Checkout</a></li>
+              <li><a href="#" class="footer-link">Order Tracking</a></li>
+              <li><a href="#" class="footer-link">Help & Support</a></li>
+            </ul>
+          </div>
         </div>
 
-
-      </div>
-
-      <div class="footer-bottom">
-        © 2021 Qode Interactive, All Rights Reserved
+        <div
+          class="footer-bottom d-flex flex-column flex-md-row justify-content-between align-items-center pt-3"
+        >
+          <p class="m-0 footer-copy" style="color: #bdc3c7">
+            &copy; 2021 Code Interactive | All Rights Reserved
+          </p>
+          <div class="social-links d-flex align-items-center gap-3">
+            <span class="follow-text" style="color: #bdc3c7">Follow Us</span>
+            <a href="#" class="footer-icon"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="footer-icon"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="footer-icon"><i class="fab fa-tumblr"></i></a>
+            <a href="#" class="footer-icon"><i class="fab fa-pinterest"></i></a>
+          </div>
+        </div>
       </div>
     </footer>
 
@@ -673,27 +657,26 @@ $result = mysqli_query($conn, $query);
 
   let cartTotal = 0;
 
-  function addToCart(event, productId) {
-    event.stopPropagation();
-    event.preventDefault();
+  function addToCart(price) {
+    cartTotal += price;
+    document.getElementById("cart-total").innerText = cartTotal + "$";
 
-    fetch(`add_to_cart.php?id=${productId}`)
-      .then(response => response.text())
-      .then(() => {
-        let toast = document.createElement("div");
-        toast.innerText = "Added to cart!";
-        toast.style.position = "fixed";
-        toast.style.top = "20px";
-        toast.style.right = "20px";
-        toast.style.background = "black";
-        toast.style.color = "white";
-        toast.style.padding = "10px 20px";
-        toast.style.borderRadius = "8px";
-        toast.style.zIndex = "9999";
-        document.body.appendChild(toast);
 
-        setTimeout(() => { toast.remove(); }, 2000);
-      });
+    let toast = document.createElement("div");
+    toast.innerText = "Added to cart!";
+    toast.style.position = "fixed";
+    toast.style.top = "20px";
+    toast.style.right = "20px";
+    toast.style.background = "black";
+    toast.style.color = "white";
+    toast.style.padding = "10px 20px";
+    toast.style.borderRadius = "8px";
+    toast.style.zIndex = "9999";
+    document.body.appendChild(toast);
+
+    setTimeout(() => {
+      toast.remove();
+    }, 2000);
   }
 </script>
 

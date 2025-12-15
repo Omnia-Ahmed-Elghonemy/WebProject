@@ -1,5 +1,5 @@
 <?php
 session_start();
 session_destroy();
-header("Location: /WebProject/admin/login.php");
+header("Location: /furniture/login.php");
 exit();

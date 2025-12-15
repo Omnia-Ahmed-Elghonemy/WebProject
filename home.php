@@ -4,7 +4,7 @@ include "db.php";
 $user_id = 1; // المستخدم التجريبي
 
 // جلب الـ 6 منتجات فقط
-$query = "SELECT * FROM products WHERE id IN (1,2,3,5,10,14)";
+$query = "SELECT * FROM products WHERE id IN (1,2,3,5,4,6)";
 $result = mysqli_query($conn, $query);
 
 // جلب عدد منتجات السلة للمستخدم
@@ -46,11 +46,10 @@ $totalQty = $cartData['total_qty'] ?? 0;
             <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
                 <ul class="navbar-nav gap-4">
                     <li class="nav-item"><a class="nav-link" href="home.php">HOME</a></li>
-                    <li class="nav-item"><a class="nav-link" href="dashboard.php">DASHBOARD</a></li>
-                    <li class="nav-item"><a class="nav-link" href="register.php">SHOP</a></li>
-                    <li class="nav-item"><a class="nav-link" href="login.php">PORTFOLIO</a></li>
-                    <li class="nav-item"><a class="nav-link" href="cart.php">BLOG</a></li>
-                    <li class="nav-item"><a class="nav-link" href="index.php">ELEMENTS</a></li>
+                    <li class="nav-item"><a class="nav-link" href="index1.php">SHOP</a></li>
+                     <li class="nav-item"><a class="nav-link" href="cart.php">CART</a></li>
+                    <li class="nav-item"><a class="nav-link" href="register.php">REGISTER</a></li>
+                    <li class="nav-item"><a class="nav-link" href="login.php">LOGIN</a></li>
                 </ul>
             </div>
 
@@ -172,6 +171,31 @@ $totalQty = $cartData['total_qty'] ?? 0;
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+function changeImg(el) {
+    document.getElementById('mainImg').src = el.src;
+}
+document.getElementById('addToCartBtn').addEventListener('click', function() {
+    const qty = document.getElementById('productQty').value;
+    const productId = <?= $product['id'] ?>;
+
+    fetch(`add_to_cart.php?id=${productId}&qty=${qty}&ajax=1`)
+    .then(response => response.json())
+    .then(data => {
+        if(data.status === 'success'){
+            alert("Product added to cart!");
+            // تحديث أيقونة الكارت في الهيدر إذا موجودة
+            const cartTotalEl = document.getElementById('cart-total');
+            if(cartTotalEl){
+                const current = parseInt(cartTotalEl.innerText.replace('$','')) || 0;
+                cartTotalEl.innerText = '$' + (current + (<?= $product['price'] ?> * qty));
+            }
+        } else {
+            alert("Error adding product to cart");
+        }
+    });
+});
+</script>
 </body>
 
 </html>

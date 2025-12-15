@@ -306,24 +306,11 @@ $result = mysqli_query($conn, $query);
     <!-- قائمة الروابط -->
      <div class="collapse navbar-collapse mx-auto" id="navbarContent">
       <ul class="navbar-nav" > <!-- mx-auto لتوسيط القائمة -->
-        <li class="nav-item">
-          <a class="nav-link" href="home.html">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="index.php">PAGES</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="cart.php">SHOP</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link " href="#">PORTFOLIO</a>
-        </li>
-                <li class="nav-item">
-          <a class="nav-link " href="#">BLOG</a>
-        </li>
-                        <li class="nav-item">
-          <a class="nav-link " href="#">ELEMENTS</a>
-        </li>
+                          <li class="nav-item"><a class="nav-link" href="home.php">HOME</a></li>
+                    <li class="nav-item"><a class="nav-link" href="index1.php">SHOP</a></li>
+                     <li class="nav-item"><a class="nav-link" href="cart.php">CART</a></li>
+                    <li class="nav-item"><a class="nav-link" href="register.php">REGISTER</a></li>
+                    <li class="nav-item"><a class="nav-link" href="login.php">LOGIN</a></li>
          <li class="nav-item">
               <a class="nav-link active "  href="cart.php" style="margin-left: 200px;">CART($<span id="total">0</span>)
             </li>

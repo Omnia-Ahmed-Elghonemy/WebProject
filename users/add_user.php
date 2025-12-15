@@ -29,7 +29,7 @@ if(isset($_POST['submit'])) {
     <style>
         form { width: 400px; margin: 50px auto; font-family: Arial; }
         input, textarea { width: 100%; padding: 10px; margin: 10px 0; }
-        input[type="submit"] { background: purple; color: white; border: none; cursor: pointer; }
+        input[type="submit"] { background: purple; color: white; border: none; cursor: pointer; text-align:center}
     </style>
 </head>
 <body>
