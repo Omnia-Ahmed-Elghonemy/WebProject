@@ -14,7 +14,7 @@ if(isset($_POST['submit'])){
     if(isset($_FILES['image']) && $_FILES['image']['name'] != ""){
         $image = $_FILES['image']['name'];
         $tmp = $_FILES['image']['tmp_name'];
-        move_uploaded_file($tmp, "uploads/".$image);
+        move_uploaded_file($tmp, "images/".$image);
 
         // Update all data including the image
         $sql = "UPDATE products SET 

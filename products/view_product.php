@@ -70,7 +70,7 @@ $result = mysqli_query($conn,"SELECT * FROM products");
 <tr>
 <td><?= $row['id'] ?></td>
 <td>
-<img src="uploads/<?= $row['image'] ?>" width="60">
+<img src="images/<?= $row['image'] ?>" width="60">
 </td>
 <td><?= $row['name'] ?></td>
 <td><?= $row['description'] ?></td>

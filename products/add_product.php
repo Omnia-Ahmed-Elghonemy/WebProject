@@ -8,7 +8,7 @@ if(isset($_POST['submit'])){
 
     $image = $_FILES['image']['name'];
     $tmp = $_FILES['image']['tmp_name'];
-    move_uploaded_file($tmp, "uploads/".$image);
+    move_uploaded_file($tmp, "images/".$image);
 
     $sql = "INSERT INTO products (image, name, description, price)
             VALUES ('$image', '$name', '$desc', '$price')";
