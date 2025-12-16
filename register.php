@@ -1,3 +1,41 @@
+<?php
+$error = "";
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
+
+    $conn = mysqli_connect("localhost","root","","furniture_store");
+
+    if($conn) {
+        $name     = mysqli_real_escape_string($conn, $_POST['name']);
+        $email    = mysqli_real_escape_string($conn, $_POST['email']);
+        $password = mysqli_real_escape_string($conn, $_POST['password']);
+        $phone    = mysqli_real_escape_string($conn, $_POST['phone']);
+        $address  = mysqli_real_escape_string($conn, $_POST['address']);
+
+        // التحقق من الايميل إذا كان موجود
+        $checkEmail = "SELECT * FROM users WHERE email='$email' LIMIT 1";
+        $result = mysqli_query($conn, $checkEmail);
+
+        if(mysqli_num_rows($result) > 0){
+            $error = "This email is already registered, please use another one";
+        } else {
+            $query = "INSERT INTO users (name, email, Password, phone, address)
+                      VALUES ('$name', '$email', '$password', '$phone','$address')";
+
+            if(mysqli_query($conn, $query)) {
+                header("Location: login.php");
+                exit();
+            }
+        }
+
+        mysqli_close($conn);
+    }
+}
+?>
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -55,6 +93,11 @@
     <div class="form-box  w-50 p-4 border border-3  ">
 
             <h2 class="text-center mb-3">Register</h2>
+<?php if (!empty($error)) { ?>
+    <div class="alert alert-danger text-center">
+        <?= $error ?>
+    </div>
+<?php } ?>
 
       
     <form method="POST" action="">
@@ -91,34 +134,9 @@
 </div>
 </div>
 <script src="js/bootstrap.bundle.min.js"></script>
-<?php
-if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
-
-    $conn = mysqli_connect("localhost","root","","furniture_store");
-
-    if($conn) {
-        $name     = mysqli_real_escape_string($conn, $_POST['name']);
-        $email    = mysqli_real_escape_string($conn, $_POST['email']);
-        $password = mysqli_real_escape_string($conn, $_POST['password']); // نص عادي
-        $phone    = mysqli_real_escape_string($conn, $_POST['phone']);
-        $address  = mysqli_real_escape_string($conn, $_POST['address']);
-
-        $query = "INSERT INTO `users`(`name`, `email`, `Password`, `phone`,`address`) 
-                  VALUES ('$name', '$email', '$password', '$phone','$address')";
-
-        if(mysqli_query($conn, $query)) {
-            header("Location:home.php"); // بعد التسجيل يروح للوجن
-            exit();
-        }
-
-        mysqli_close($conn);
-    }
-}
-?>
 
 
 
 </body>
 </html>
-       
        

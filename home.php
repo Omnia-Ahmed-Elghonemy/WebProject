@@ -55,7 +55,7 @@ $totalQty = $cartData['total_qty'] ?? 0;
 
             <!-- Right Icons -->
             <div class="d-flex align-items-center gap-4 nav-icons">
-                <span class="text-white">CART (<?= $totalQty ?>)</span>
+                <span class="text-white"> <a href="cart.php" class="nav-link">CART (<?= $totalQty ?>)</a></span>
                 <i class="fa-regular fa-heart text-white"></i>
                 <i class="fa-solid fa-bars text-white"></i>
             </div>

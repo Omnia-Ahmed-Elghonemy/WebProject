@@ -67,7 +67,7 @@ if($result->num_rows > 0){
 
         <!-- Right Icons -->
         <div class="d-flex align-items-center gap-4 nav-icons">
-          <span ><a href="cart.php" style="text-decoration: none; color: black;">CART ()</a></span>
+          <span ><a href="cart.php" style="text-decoration: none; color: black;">CART ($500.00)</a></span>
           <i class="fa-regular fa-heart "></i>
           <i class="fa-solid fa-bars "></i>
         </div>

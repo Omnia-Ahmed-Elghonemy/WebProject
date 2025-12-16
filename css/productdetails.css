@@ -131,6 +131,9 @@ p {
 .details a:hover {
     text-decoration: underline;
 }
+.fa-heart:hover{
+    color: #ff1900;
+}
 .footer{
     margin-top: 100px;
  background-color: #1e1d1d;

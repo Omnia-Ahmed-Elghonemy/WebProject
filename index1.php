@@ -30,7 +30,7 @@ $result = mysqli_query($conn, $query);
   <style>
     body {
       margin: 0;
-      font-family: monospace;
+
     }
 
     /* ===== Header ===== */

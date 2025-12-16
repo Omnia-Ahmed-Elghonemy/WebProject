@@ -251,7 +251,7 @@ img{
         <?php while($row = mysqli_fetch_assoc($products)) { ?>
         <tr>
             <td><?= $row['id'] ?></td>
-            <td><img src="products/uploads/<?= $row['image'] ?>" width="60"></td>
+            <td><img src="images/<?= $row['image'] ?>" width="60"></td>
             <td><?= $row['name'] ?></td>
             <td><?= $row['description'] ?></td>
             <td><?= $row['price'] ?></td>

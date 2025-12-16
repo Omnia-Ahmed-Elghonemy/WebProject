@@ -294,7 +294,7 @@ $result = mysqli_query($conn, $query);
   <div class="container">
     <!-- Logo -->
     <a class="navbar-brand" href="#">
-      <span style="font-size:30px; letter-spacing:2px; font-weight:bold; margin-left: 200px; margin-right: 350px;">DEPOT</span>
+      <span style="font-size:30px; letter-spacing:2px; font-weight:bold; margin-left:50px; margin-right: 350px;">DEPOT</span>
     </a>
 
     <!-- زر الهامبرغر للشاشات الصغيرة -->
